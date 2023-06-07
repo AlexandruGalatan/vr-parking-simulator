@@ -19,7 +19,7 @@ public class WheelController : MonoBehaviour
 
     public float acceleration = 500f;
     public float brakingForce = 300f;
-    public float maxTurnAngle = 65f;
+    public float maxTurnAngle = 85f;
 
     private float currentAcceleration = 0f;
     private float currentBrakeForce = 0f;
@@ -63,7 +63,7 @@ public class WheelController : MonoBehaviour
 
         frontLeft.steerAngle = currentTurnAngle;
         frontRight.steerAngle = currentTurnAngle;
-
+        
         UpdateWheel(frontRight, frontRightTransform);
         UpdateWheel(frontLeft, frontLeftTransform);
         
