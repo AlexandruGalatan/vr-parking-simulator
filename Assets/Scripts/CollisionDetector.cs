@@ -1,28 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CollisionDetector : MonoBehaviour
 {
+
+    public Transform player;
+    public GameObject gameEnd;
+
+    public GameObject lInteract;
+    public GameObject rInteract;
+
+    private bool GameEnded = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        int randomNumber = Random.Range(1, 10001);
+        if (GameEnded) {
+            return;
+        }
 
-        Debug.Log("Collision detected!" + randomNumber);
+        GameEnded = true;
+        player.position += new Vector3(0, 3, 0);
+        gameEnd.SetActive(true);
 
-        // You can add your custom logic here when a collision occurs
-        // For example, you can play a sound, trigger an effect, or apply damage to the car
+        lInteract.SetActive(true);
+        rInteract.SetActive(true);
     }
 }

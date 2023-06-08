@@ -4,16 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MenuManager : MonoBehaviour
+public class GameMenuManager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
     {
         
     }
@@ -25,10 +19,7 @@ public class MenuManager : MonoBehaviour
 
     public void ExitGame()
     {
-        Application.Quit();
-
-        #if UNITY_EDITOR
-        UnityEditor.EditorApplication.ExitPlaymode();
-        #endif
+        SceneManager.LoadScene("MainMenu");
     }
+
 }
