@@ -19,7 +19,9 @@ public class MirrorEffect : MonoBehaviour
         Vector3 localPlayer = mirror.InverseTransformPoint(player.position);
         //transform.position = mirror.TransformPoint(new Vector3(localPlayer.x, localPlayer.y, -localPlayer.z));
 
-        Vector3 lookAtMirror = mirror.TransformPoint(new Vector3(-localPlayer.x, -localPlayer.y, localPlayer.z));
+        Vector3 playerPoint = new Vector3(-localPlayer.x, -localPlayer.y, localPlayer.z);
+
+        Vector3 lookAtMirror = mirror.TransformPoint(playerPoint);
         transform.LookAt(lookAtMirror);
     }
 }

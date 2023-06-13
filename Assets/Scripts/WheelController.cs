@@ -19,12 +19,12 @@ public class WheelController : MonoBehaviour
 
     public float acceleration = 500f;
     public float brakingForce = 300f;
-    public float maxTurnAngle = 85f;
 
     private float currentAcceleration = 0f;
     private float currentBrakeForce = 0f;
     private float currentTurnAngle = 0f;
 
+    public float maxTurnAngle = 30f;
     private float maxAngle = 540f;
     public void SteeringAngleChanged(float val) {
        
@@ -77,7 +77,9 @@ public class WheelController : MonoBehaviour
 
         col.GetWorldPose(out position, out rotation);
 
+        Vector3 newRotation = new Vector3(-rotation.eulerAngles.x, rotation.eulerAngles.y + 180, rotation.eulerAngles.z);
+
         trans.position = position;
-        trans.rotation = Quaternion.Euler(new Vector3(-rotation.eulerAngles.x, rotation.eulerAngles.y + 180, rotation.eulerAngles.z));
+        trans.rotation = Quaternion.Euler(newRotation);
     }
 }
