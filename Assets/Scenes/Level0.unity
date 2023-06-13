@@ -2742,6 +2742,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 480220290996607188, guid: bd89920fffcf6914a80e99e6778ba7fb, type: 3}
+--- !u!114 &429707868 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1003786499333185191, guid: b5b6bd99d69e26643964bcafcce7f989,
+    type: 3}
+  m_PrefabInstance: {fileID: 1927880863}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60af5ef09be368a4bb326d6d198a8eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &445382029
 GameObject:
   m_ObjectHideFlags: 0
@@ -12162,6 +12174,90 @@ Transform:
   m_Father: {fileID: 376076724}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1927880863
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1003786499333185188, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003786499333185188, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003786499333185188, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003786499333185188, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003786499333185188, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003786499333185188, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003786499333185188, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003786499333185188, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003786499333185188, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003786499333185188, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003786499333185188, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003786499333185189, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: m_Name
+      value: Output.InteractorHaptics
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003786499333185191, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: trackedAlias
+      value: 
+      objectReference: {fileID: 114636638706424285}
+    - target: {fileID: 1003786499333185191, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: leftInteractor
+      value: 
+      objectReference: {fileID: 5839046842086775835}
+    - target: {fileID: 1003786499333185191, guid: b5b6bd99d69e26643964bcafcce7f989,
+        type: 3}
+      propertyPath: rightInteractor
+      value: 
+      objectReference: {fileID: 5839046841806856189}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5b6bd99d69e26643964bcafcce7f989, type: 3}
 --- !u!1 &1940843380
 GameObject:
   m_ObjectHideFlags: 0
@@ -58404,7 +58500,20 @@ MonoBehaviour:
       m_Calls: []
   Touched:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 429707868}
+        m_TargetAssemblyTypeName: Tilia.Output.InteractorHaptics.InteractorHapticsFacade,
+          Tilia.Output.InteractorHaptics.Unity.Runtime
+        m_MethodName: PerformProfileHaptics
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Untouched:
     m_PersistentCalls:
       m_Calls: []
