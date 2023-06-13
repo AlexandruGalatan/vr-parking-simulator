@@ -13,6 +13,9 @@ public class CollisionDetector : MonoBehaviour
     public GameObject lInteract;
     public GameObject rInteract;
 
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+
     private bool GameEnded = false;
 
     // Start is called before the first frame update
@@ -44,6 +47,8 @@ public class CollisionDetector : MonoBehaviour
         if (GameEnded) {
             return;
         }
+
+        audioSource.PlayOneShot(audioClip);
 
         GameEnded = true;
         player.position += new Vector3(0, 3, 0);
