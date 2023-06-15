@@ -16,12 +16,13 @@ public class MirrorEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 localPlayer = mirror.InverseTransformPoint(player.position);
-        //transform.position = mirror.TransformPoint(new Vector3(localPlayer.x, localPlayer.y, -localPlayer.z));
+        Vector3 inversePlayer = mirror.InverseTransformPoint(player.position);
 
-        Vector3 playerPoint = new Vector3(-localPlayer.x, -localPlayer.y, localPlayer.z);
+        Vector3 playerPoint = new Vector3(-inversePlayer.x, -inversePlayer.y, inversePlayer.z);
 
-        Vector3 lookAtMirror = mirror.TransformPoint(playerPoint);
-        transform.LookAt(lookAtMirror);
+        Vector3 mirrorTarget = mirror.TransformPoint(playerPoint);
+        
+        transform.LookAt(mirrorTarget);
+
     }
 }
