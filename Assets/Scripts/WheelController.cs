@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class WheelController : MonoBehaviour
 {
+    private InputDevice targetDevice;
 
     [SerializeField] WheelCollider frontRight;
     [SerializeField] WheelCollider frontLeft;
@@ -17,16 +19,32 @@ public class WheelController : MonoBehaviour
 
     public float acceleration = 500f;
     public float brakingForce = 300f;
-    public float maxTurnAngle = 15f;
 
     private float currentAcceleration = 0f;
     private float currentBrakeForce = 0f;
     private float currentTurnAngle = 0f;
 
+    public float maxTurnAngle = 30f;
+    private float maxAngle = 540f;
+    public void SteeringAngleChanged(float val) {
+       
+        currentTurnAngle = val / maxAngle * maxTurnAngle;
+    }
+
+    void Start() {
+        List<InputDevice> devices = new List<InputDevice>();
+        InputDevices.GetDevices(devices);
+
+        targetDevice = devices[0];
+    }
+
     private void FixedUpdate() {
 
-        currentTurnAngle = maxTurnAngle * Input.GetAxis("Horizontal");
+        targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
+        //print(steeringWheel.rotation.x);
+
         currentAcceleration = acceleration * Input.GetAxis("Vertical");
+        //currentTurnAngle = maxTurnAngle * Input.GetAxis("Horizontal");
 
         if (Input.GetKey(KeyCode.Space)) {
             currentBrakeForce = brakingForce;
@@ -45,12 +63,12 @@ public class WheelController : MonoBehaviour
 
         frontLeft.steerAngle = currentTurnAngle;
         frontRight.steerAngle = currentTurnAngle;
-
+        
         UpdateWheel(frontRight, frontRightTransform);
         UpdateWheel(frontLeft, frontLeftTransform);
         
-        UpdateWheel(backRight, backRightTransform);
-        UpdateWheel(backLeft, backLeftTransform);
+        //UpdateWheel(backRight, backRightTransform);
+        //UpdateWheel(backLeft, backLeftTransform);
     }
 
     private void UpdateWheel(WheelCollider col, Transform trans) {
@@ -59,7 +77,9 @@ public class WheelController : MonoBehaviour
 
         col.GetWorldPose(out position, out rotation);
 
+        Vector3 newRotation = new Vector3(-rotation.eulerAngles.x, rotation.eulerAngles.y + 180, rotation.eulerAngles.z);
+
         trans.position = position;
-        trans.rotation = Quaternion.Euler(new Vector3(-rotation.eulerAngles.x, rotation.eulerAngles.y + 180, rotation.eulerAngles.z));
+        trans.rotation = Quaternion.Euler(newRotation);
     }
 }
