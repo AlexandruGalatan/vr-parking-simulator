@@ -17,10 +17,10 @@ public class WheelController : MonoBehaviour
     [SerializeField] Transform backRightTransform;
     [SerializeField] Transform backLeftTransform;
 
-    public float acceleration = 500f;
+    public float maxAcceleration = 500f;
     public float brakingForce = 300f;
 
-    private float currentAcceleration = 0f;
+    private float wheelAcceleration = 0f;
     private float currentBrakeForce = 0f;
     private float currentTurnAngle = 0f;
 
@@ -43,7 +43,8 @@ public class WheelController : MonoBehaviour
         targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
         //print(steeringWheel.rotation.x);
 
-        currentAcceleration = acceleration * Input.GetAxis("Vertical");
+        float throttle = Input.GetAxis("Vertical");
+        wheelAcceleration = maxAcceleration * throttle;
         //currentTurnAngle = maxTurnAngle * Input.GetAxis("Horizontal");
 
         if (Input.GetKey(KeyCode.Space)) {
@@ -53,8 +54,8 @@ public class WheelController : MonoBehaviour
             currentBrakeForce = 0f;
         }
 
-        frontRight.motorTorque = currentAcceleration;
-        frontLeft.motorTorque = currentAcceleration;
+        frontRight.motorTorque = wheelAcceleration;
+        frontLeft.motorTorque = wheelAcceleration;
 
         frontRight.brakeTorque = currentBrakeForce;
         frontLeft.brakeTorque = currentBrakeForce;
@@ -64,22 +65,22 @@ public class WheelController : MonoBehaviour
         frontLeft.steerAngle = currentTurnAngle;
         frontRight.steerAngle = currentTurnAngle;
         
-        UpdateWheel(frontRight, frontRightTransform);
-        UpdateWheel(frontLeft, frontLeftTransform);
+        UpdateWheelVisual(frontRight, frontRightTransform);
+        UpdateWheelVisual(frontLeft, frontLeftTransform);
         
-        //UpdateWheel(backRight, backRightTransform);
-        //UpdateWheel(backLeft, backLeftTransform);
+        //UpdateWheelVisual(backRight, backRightTransform);
+        //UpdateWheelVisual(backLeft, backLeftTransform);
     }
 
-    private void UpdateWheel(WheelCollider col, Transform trans) {
-        Vector3 position;
-        Quaternion rotation;
+    void UpdateWheelVisual(WheelCollider wheelCollider, Transform targetTransform) {
+        Vector3 wheelPosition;
+        Quaternion wheelRotation;
 
-        col.GetWorldPose(out position, out rotation);
+        wheelCollider.GetWorldPose(out wheelPosition, out wheelRotation);
 
-        Vector3 newRotation = new Vector3(-rotation.eulerAngles.x, rotation.eulerAngles.y + 180, rotation.eulerAngles.z);
+        Vector3 newRotation = new Vector3(-wheelRotation.eulerAngles.x, wheelRotation.eulerAngles.y + 180, wheelRotation.eulerAngles.z);
 
-        trans.position = position;
-        trans.rotation = Quaternion.Euler(newRotation);
+        targetTransform.position = wheelPosition;
+        targetTransform.rotation = Quaternion.Euler(newRotation);
     }
 }
