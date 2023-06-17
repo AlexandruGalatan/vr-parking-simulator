@@ -12,6 +12,11 @@ public class GameMenuManager : MonoBehaviour
         
     }
 
+    public void ResetGame()
+    {
+        SceneManager.LoadScene("Level0");
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene("Level1");

@@ -8064,7 +8064,7 @@ MonoBehaviour:
   frontLeftTransform: {fileID: 368148652}
   backRightTransform: {fileID: 1190759714}
   backLeftTransform: {fileID: 1927669740}
-  acceleration: 500
+  maxAcceleration: 500
   brakingForce: 300
   maxTurnAngle: 30
 --- !u!54 &1216053257
@@ -50638,7 +50638,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3196401075428756752}
         m_TargetAssemblyTypeName: GameMenuManager, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: ResetGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
